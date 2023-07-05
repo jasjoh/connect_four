@@ -7,41 +7,43 @@
  * board fills (tie)
  */
 
-var WIDTH = 7;
-var HEIGHT = 6;
+const WIDTH = 7;
+const HEIGHT = 6;
 
-var currPlayer = 1; // active player: 1 or 2
-var board = []; // array of rows, each row is array of cells  (board[y][x])
+let currPlayer = 1; // active player: 1 or 2
+const board = []; // array of rows, each row is array of cells  (board[y][x])
 
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
  */
 
 function makeBoard() {
-  for (let i = 0; i < HEIGHT; i++) {
+  for (let y = 0; y < HEIGHT; y++) {
     const subArr = [];
-    for (let j = 0; j < WIDTH; y++) {
-      subArr.push[null];
+    for (let x = 0; x < WIDTH; x++) {
+      subArr.push(null);
+
     }
-    board.push[subArr];
+    board.push(subArr);
   }
+
 }
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
 
 function makeHtmlBoard() {
-  var htmlBoard = document.getElementById('board');
+  const htmlBoard = document.getElementById('board');
 
   // this code is creating the top row of the game board
   // then adding an ID and event listener to it
-  var top = document.createElement("tr");
+  const top = document.createElement("tr");
   top.setAttribute("id", "column-top");
   top.addEventListener("click", handleClick);
 
   // this code is going to add cells to the top of the game board
   // then adding an ID to each cell
-  for (var x = 0; x < WIDTH; x++) {
-    var headCell = document.createElement("td");
+  for (let x = 0; x < WIDTH; x++) {
+    const headCell = document.createElement("td");
     headCell.setAttribute("id", `top-${x}`);
     top.append(headCell);
   }
@@ -50,10 +52,10 @@ function makeHtmlBoard() {
   // dynamically creates the main part of html board
   // uses HEIGHT to create table rows
   // uses WIDTH to create table cells for each row
-  for (var y = 0; y < HEIGHT; y++) {
+  for (let y = 0; y < HEIGHT; y++) {
     // TODO: Create a table row element and assign to a "row" variable
     const row = document.createElement("tr");
-    for (var x = 0; x < WIDTH; x++) {
+    for (let x = 0; x < WIDTH; x++) {
       // TODO: Create a table cell element and assign to a "cell" variable
       const cell = document.createElement("td");
       // TODO: add an id, c-y-x, to the above table cell element
@@ -78,6 +80,12 @@ function findSpotForCol(x) {
 
 function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
+  const piece = document.createElement('div');
+  piece.classList.add("piece");
+  piece.classList.add(`p${currPlayer}`);
+
+  const cell = document.getElementById(`c-${y}-${x}`);
+  cell.append(piece);
 }
 
 /** endGame: announce game end */
